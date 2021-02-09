@@ -5,8 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// アソーシエーションのために
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
+// Illuminate\Foundation\Auth\UserはModelを基底クラスに持ちます（リファレンス）ので、Authenticatableを継承すれば祖先にModelはすでにある。
 {
     use Notifiable;
 
@@ -37,9 +40,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['recipe'];
-
-    public function recipes(){
-        return $this->HasMany(Recipe::class);
+    // アソーシエーション 
+    /**
+     * このコメントを所有するポストを取得
+     */
+    public function recipe(){
+        return $this->hasMany('App\Models\recipe');
     }
 }

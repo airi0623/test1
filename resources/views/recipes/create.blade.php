@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">タグ登録</div>
+                <div class="card-header">レシピ登録</div>
 
                 <div class="card-body">
 

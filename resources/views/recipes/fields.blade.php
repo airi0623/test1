@@ -10,8 +10,8 @@
 
 <div class="form-group">
   <label for="InputCategoryId">カテゴリー</label>
-  <input type="text" name="category_id" value="{{ $recipe->category_id ?? ''}}" class="form-control form-control @error('category_id') is-invalid @enderror" id="InputCategoryId" placeholder="Enter title">
-  @error('title')
+  <input type="integer" name="category_id" value="{{ $recipe->category_id ?? ''}}" class="form-control form-control @error('category_id') is-invalid @enderror" id="InputCategoryId" placeholder="Enter title">
+  @error('category_id')
   <span class="invalid-feedback" role="alert">
       <strong>{{ $message }}</strong>
   </span>
@@ -19,6 +19,8 @@
 </div>
 
 
+
+
 <button type="submit" class="btn btn-primary">送信</button>
 <!-- route{{}}の記述方法が使えない -->
-<a href="/tags" class="btn btn-secondary">一覧へ戻る</a>
+<a href="/recipes" class="btn btn-secondary">一覧へ戻る</a>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\recipe;
 use App\User;
-use Illuminate\Http\Request;
+use App\Models\recipe;
+// use Illuminate\Http\Request;
+use App\Http\Requests\RecipeRequest;
+// ユーザーID取得のため
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -27,6 +30,7 @@ class RecipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
         return view('recipes.create');
     }
@@ -37,9 +41,20 @@ class RecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(RecipeRequest $request)
+    {   
+        // dd($request->all());
+        // dd(Auth::id());
+        $recipe = new Recipe;
+        // これがないとエラー
+        // SQLSTATE[HY000]: General error: 1364 Field 'user_id' doesn't have a default value (SQL: insert into `recipes` (`title`, `category_id`, `updated_at`, `created_at`) values (test, 1, 2021-02-09 09:17:00, 2021-02-09 09:17:00))
+        $recipe->user_id = Auth::id();
+        $recipe->title = $request->title;
+        $recipe->category_id = $request->category_id;
+        $recipe->save();
+
+        return redirect()->route('home')->with('status', 'レシピを登録しました');
+        // $recipe = Recipe::create($request->all());
     }
 
     /**
@@ -71,7 +86,7 @@ class RecipeController extends Controller
      * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, recipe $recipe)
+    public function update(RecipeRequest $request, recipe $recipe)
     {
         //
     }

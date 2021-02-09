@@ -16,10 +16,11 @@ class CreateRecipesTable extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->unsignedBigInteger('category_id');
-            $table->unique(['user_id'],'uq_roles');
+            // この絡むとimageを無くしたらいけた
+            // $table->unique(['user_id'],'uq_roles');
             $table->timestamps();
         });
     }

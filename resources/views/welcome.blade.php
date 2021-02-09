@@ -92,7 +92,7 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                    <a href="{{ route('recipes.create') }}" class="btn btn-primary mb-3">新規登録</a>
+                    <a href="{{ route('recipes.create') }}" class="btn btn-primary mb-3">レシピ登録</a>
 
                 </div>
             </div>

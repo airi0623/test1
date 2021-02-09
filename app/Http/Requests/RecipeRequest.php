@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class RecipeRequest extends FormRequest
 {
     /**
@@ -13,7 +14,7 @@ class RecipeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +26,7 @@ class RecipeRequest extends FormRequest
     {
         return [
             'title' => 'required|max:50',
-            'user_id' =>  'required',
+            // 'user_id' =>  'required',
             'category_id' =>  'required',
         ];
     }
