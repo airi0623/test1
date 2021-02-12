@@ -93,7 +93,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                     <a href="{{ route('recipes.create') }}" class="btn btn-primary mb-3">レシピ登録</a>
-
+                    <a href="{{ route('recipes.index') }}" class="btn btn-primary mb-3">レシピ一覧</a>
                 </div>
             </div>
         </div>

@@ -11,9 +11,14 @@
 |
 */
 
+use Illuminate\Http\Request;
+use App\Models\recipe;
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $recipe = Recipe::find(20);
+        
+    return view('welcome', compact('recipe'));
 });
 
 Auth::routes();

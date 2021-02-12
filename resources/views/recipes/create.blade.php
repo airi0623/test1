@@ -10,7 +10,7 @@
 
                 <div class="card-body">
 
-                  <form method="POST" action="{{ route('recipes.store') }}">
+                  <form method="POST" action="{{ route('recipes.store') }}" enctype="multipart/form-data">
                     @csrf
                     @include('recipes.fields')
                   </form>

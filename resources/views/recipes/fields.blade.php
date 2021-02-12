@@ -9,8 +9,13 @@
 </div>
 
 <div class="form-group">
+    <label for="exampleFormControlFile1">Example file input</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept="image/png, image/jpeg">
+</div>
+
+<div class="form-group">
   <label for="InputCategoryId">カテゴリー</label>
-  <input type="integer" name="category_id" value="{{ $recipe->category_id ?? ''}}" class="form-control form-control @error('category_id') is-invalid @enderror" id="InputCategoryId" placeholder="Enter title">
+  <input type="integer" name="category_id" value="{{ $recipe->category_id ?? ''}}" class="form-control form-control @error('category_id') is-invalid @enderror" id="InputCategoryId" name="category_id">
   @error('category_id')
   <span class="invalid-feedback" role="alert">
       <strong>{{ $message }}</strong>

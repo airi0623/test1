@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// 足した 
+use App\Models\recipe;
+use App\Http\Requests\RecipeRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller
@@ -24,6 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $recipe = Recipe::find(18);
+
+        return view('home', compact('recipe'));
     }
 }
