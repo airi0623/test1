@@ -28,8 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recipe = Recipe::find(18);
-
-        return view('home', compact('recipe'));
+        return view('home');
     }
 }

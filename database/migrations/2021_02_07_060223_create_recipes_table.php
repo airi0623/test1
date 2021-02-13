@@ -18,7 +18,7 @@ class CreateRecipesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->unsignedBigInteger('category_id');
+            $table->string('category');
             // このカラムとを無くしたらいけた
             // $table->unique(['user_id'],'uq_roles');
             $table->timestamps();

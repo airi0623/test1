@@ -19,7 +19,11 @@
                       </tr>
                       <tr>
                         <th>PhotoPhoto</th>
-                        <td><img src="../storage/image/{{$recipe->image}}" alt="画像だよ"></td>
+                        <td>
+                          <div class="box-img">
+                            <img src="../storage/image/{{$recipe->image}}" alt="画像だよ" class="img-detail">
+                          </div>
+                        </td>
                       </tr>
                       <tr>
                         <th>料理名</th>
@@ -27,7 +31,7 @@
                       </tr>
                       <tr>
                         <th>カテゴリー</th>
-                        <td>{{ $recipe->category_id }}</td>
+                        <td>{{ $recipe->category }}</td>
                       </tr>
 
                     </table>

@@ -10,6 +10,6 @@ $factory->define(recipe::class, function (Faker $faker) {
         'user_id' => $faker->numberBetween($min = 1, $max = 3),
         'title' => $faker->realText($faker->numberBetween(10,25)),
         'image' => $faker->realText($faker->numberBetween(10,25)),
-        'category_id' => $faker->numberBetween($min = 1, $max = 10)
+        'category' => $faker->randomElement($array = ['主食', '主菜', '副菜']),
     ];
 });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class recipe extends Model
 {
     protected $fillable = [
-        'title', 'image', 'user_id', 'category_id'
+        'title', 'image', 'user_id', 'category'
     ];
 
     // アソーシエーション 
@@ -17,4 +17,9 @@ class recipe extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function category(){
+        return $this->belongsTo('Config\Category');
+    }
+    
 }
