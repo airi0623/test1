@@ -9,7 +9,12 @@
             <div class="card">
                 <div class="card-header">レシピ一覧</div>
 
-                <div class="card-body">
+                  <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <div class="md-3">
                       <a href="{{ route('recipes.create') }}" class="btn btn-primary mb-3">レシピ新規登録</a>
                     </div>
@@ -30,6 +35,11 @@
                             <div class="d-flex">
                               <a href="{{ route('recipes.edit', $recipe->id) }}" class="btn btn-secondary btn-sm">編集</a>
                               <a href="{{ route('recipes.show', $recipe->id) }}" class="btn btn-secondary btn-sm ml-1">詳細</a>
+                              <form method="POST" action="{{ route('recipes.destroy', $recipe) }}">
+                                @method('DELETE')
+                                @csrf
+                                <button onclick="return confirm ('本当に削除してよろしいですか')" class="btn btn-secondary btn-sm ml-1">削除</button>
+                              </form>
                             </div>
                           </td>
                         </tr>

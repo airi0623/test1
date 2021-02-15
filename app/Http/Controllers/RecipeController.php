@@ -66,7 +66,7 @@ class RecipeController extends Controller
         }
         $recipe->save();
 
-        return redirect()->route('home')->with('status', 'レシピを登録しました');
+        return redirect()->route('recipes.index')->with('status', 'レシピを登録しました');
     }
 
     /**
@@ -113,7 +113,7 @@ class RecipeController extends Controller
             $recipe->save();
         }
         $recipe->save(Input::except('image')); 
-        return redirect()->route('home')->with('status', 'レシピを更新しました');
+        return redirect()->route('recipes.index')->with('status', 'レシピを更新しました');
     }
 
     /**
