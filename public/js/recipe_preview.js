@@ -3,17 +3,17 @@ if (location.pathname.match("recipes/")){
     const ImageList = document.getElementById('box-img-recipe');
     console.log("OK")
     const createImageHTML = (blob) => {
-      // 画像を表示するためのdiv要素を生成
+      // div要素生成
       const imageElement = document.createElement('div');
       imageElement.setAttribute('class', "box-img")
       imageElement.setAttribute('id', "box_for_preview")
 
-      // 表示する画像を生成
+      // 画像生成
       const blobImage = document.createElement('img');
       blobImage.setAttribute('src', blob);
       blobImage.setAttribute('class', "img-recipe")
 
-      // 生成したHTMLの要素をブラウザに表示させる
+      // appendでHTMLに反映
       imageElement.appendChild(blobImage);
       ImageList.appendChild(imageElement);
     };
