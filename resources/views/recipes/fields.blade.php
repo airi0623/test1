@@ -17,12 +17,16 @@
 <div class="form-group">
     <label for="exampleFormControlFile1">Example file input</label>
     @if(isset( $recipe -> image ))
-      <input type="file" name="image" value="{{ old('image', $recipe->image)}}" class="form-control-file" id="exampleFormControlFile1" accept="image/png, image/jpeg">
-      <div class="box-img">
-        <img src="/storage/image/{{$recipe->image}}" alt="画像だよ" class="img-detail">
+      <input type="file" name="image" value="{{ old('image', $recipe->image)}}" class="form-control-file" id="input-file" accept="image/png, image/jpeg">
+      <div id="box-img-recipe">
+        <div class="box-img" id="box_for_preview">
+          <img src="/storage/image/{{$recipe->image}}" alt="画像だよ" class="img-recipe">
+        </div>
       </div>
     @else 
-      <input type="file" name="image" value="{{ old('image')}}" class="form-control-file" id="exampleFormControlFile1" accept="image/png, image/jpeg">
+      <input type="file" name="image" value="{{ old('image')}}" class="form-control-file" id="input-file" accept="image/png, image/jpeg">
+      <div id="box-img-recipe">
+      </div>
     @endif
     @error('image')
     <span class="invalid-feedback" role="alert">

@@ -1,9 +1,14 @@
 
 /* recipe.show */
-.img-detail{
+.img-recipe{
   width: 300px;
 }
-
 .box-img{
   width: 300px;
 }
+
+/* recipe.create */
+.img-pre-recipe{
+  width: 100px;
+}
+

@@ -1,7 +1,3 @@
-
-
-
-
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -21,7 +17,7 @@
                         <th>PhotoPhoto</th>
                         <td>
                           <div class="box-img">
-                            <img src="../storage/image/{{$recipe->image}}" alt="画像だよ" class="img-detail">
+                            <img src="../storage/image/{{$recipe->image}}" alt="画像だよ" class="img-recipe">
                           </div>
                         </td>
                       </tr>
