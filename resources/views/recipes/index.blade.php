@@ -25,7 +25,7 @@
                       @foreach($recipes as $recipe)
                         <tr>
                           <td class="align-middle">{{ $recipe -> title }}</td>
-                          <td class="align-middle">{{ $recipe -> category }}</td>
+                          <td class="align-middle">{{ $recipe-> category -> category}}</td>
                           <td class="align-middle">
                             <div class="d-flex">
                               <a href="{{ route('recipes.edit', $recipe->id) }}" class="btn btn-secondary btn-sm">編集</a>

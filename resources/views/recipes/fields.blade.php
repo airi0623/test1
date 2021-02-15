@@ -18,6 +18,9 @@
     <label for="exampleFormControlFile1">Example file input</label>
     @if(isset( $recipe -> image ))
       <input type="file" name="image" value="{{ old('image', $recipe->image)}}" class="form-control-file" id="exampleFormControlFile1" accept="image/png, image/jpeg">
+      <div class="box-img">
+        <img src="/storage/image/{{$recipe->image}}" alt="画像だよ" class="img-detail">
+      </div>
     @else 
       <input type="file" name="image" value="{{ old('image')}}" class="form-control-file" id="exampleFormControlFile1" accept="image/png, image/jpeg">
     @endif
@@ -30,10 +33,14 @@
 <!-- カテゴリー -->
 <div class="form-group">
   <label for="InputCategoryId">カテゴリー</label>
-  {{-- <!-- <input type="integer" name="category" value="{{ $recipe->category ?? ''}}" class="form-control form-control @error('category') is-invalid @enderror" id="InputCategoryId" name="category"> --> --}}
-  <select type="text" class="form-control" name="category">
-    @foreach($category as $key => $value)
-      <option value="{{ $value }}" name="category" class="form-control form-control" class="form-control form-control" id="InputCategoryId">{{ $value }}</option>
+  <select type="text" class="form-control" name="category_id">
+  <option value = "" selected>選択してください</option>
+    @foreach($categories as $category)
+      @if(isset( $recipe -> category_id))
+        <option value="{{ $category->id }}" selected class="form-control form-control" id="InputCategoryId">{{ $category->category }}</option>
+      @else 
+        <option value = "{{ $category->id }}" class="form-control form-control" id="InputCategoryId">{{ $category->category }}</option>
+      @endif
     @endforeach
   </select>
   @error('category')

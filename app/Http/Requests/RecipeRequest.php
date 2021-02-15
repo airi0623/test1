@@ -27,7 +27,7 @@ class RecipeRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             // 'user_id' =>  'required|numeric',
-            'category' =>  'required',
+            'category_id' =>  'required',
             'image' => 'required|file|image'
         ];
     }

@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Models\recipe;
+use App\Models\Category;
 // use Illuminate\Http\Request;
 use App\Http\Requests\RecipeRequest;
 // ユーザーID取得のため
 use Illuminate\Support\Facades\Auth;
+// アップロード時に既存ファイルあれば削除できるようにするため
+use Illuminate\Support\Facades\Storage;
+// Inputクラスメソッド？を使うため
+use Illuminate\Support\Facades\Input;
 
 class RecipeController extends Controller
 {
@@ -19,6 +24,8 @@ class RecipeController extends Controller
     public function index()
     {
         $recipes = Recipe::orderBy('id','desc')->paginate(20);
+        // アソシエーション組んでたらいらない
+        // $categories = Category::all();
 
         return view('recipes.index', compact('recipes'));
     }
@@ -30,9 +37,8 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        $category = config('category');
-        // dd($category);
-        return view('recipes.create', compact('category'));
+        $categories = Category::all();
+        return view('recipes.create', compact('categories'));
         // return view('recipes.create')->with(['category' => $category]);
     }
 
@@ -43,29 +49,24 @@ class RecipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(RecipeRequest $request)
-    {   
+    {
+        $recipe = new Recipe;            
+        // これがないとエラー
+        // SQLSTATE[HY000]: General error: 1364 Field 'user_id' doesn't have a default value (SQL: insert into `recipes` (`title`, `category`, `updated_at`, `created_at`) values (test, 1, 2021-02-09 09:17:00, 2021-02-09 09:17:00))
+        $recipe->user_id = Auth::id();
+        $recipe->title = $request->title;
+        $recipe->category_id = $request->category_id;
         // dd($request);
         // dd(Auth::id());
         if($request->file('image')->isValid()){
-            $recipe = new Recipe;
-            // これがないとエラー
-            // SQLSTATE[HY000]: General error: 1364 Field 'user_id' doesn't have a default value (SQL: insert into `recipes` (`title`, `category`, `updated_at`, `created_at`) values (test, 1, 2021-02-09 09:17:00, 2021-02-09 09:17:00))
-            $recipe->user_id = Auth::id();
-            $recipe->title = $request->title;
-            $recipe->category = $request->category;
-            // ファイル名を指定
             $file_name = $request->file('image')->getClientOriginalName();
             $path = $request->file('image')->storeAs('public/image', $file_name);
-            // $path = $request->file('image')->store('public/image');
-            // $input->image = basename($filename);
-            // dd($filename);
+            // dd($file_name);
             $recipe->image = basename($path);
-            // $recipe->image = $filename
-            $recipe->save();
         }
+        $recipe->save();
 
         return redirect()->route('home')->with('status', 'レシピを登録しました');
-        
     }
 
     /**
@@ -87,7 +88,9 @@ class RecipeController extends Controller
      */
     public function edit(recipe $recipe)
     {
-        //
+        $categories = Category::all();
+        // Railsとは異なり、find(id)でレコードを取得しなくてもshowもeditが表示される
+        return view('recipes.edit', compact('recipe', 'categories'));
     }
 
     /**
@@ -99,7 +102,18 @@ class RecipeController extends Controller
      */
     public function update(RecipeRequest $request, recipe $recipe)
     {
-        //
+        $recipe->user_id = Auth::id();
+        $recipe->title = $request->title;
+        $recipe->category_id = $request->category_id;
+        if($request->file('image')->isValid()){
+            Storage::delete('public/image/', $recipe->image);//元の画像を削除
+            $file_name = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('public/image', $file_name);
+            $recipe->image = basename($path);
+            $recipe->save();
+        }
+        $recipe->save(Input::except('image')); 
+        return redirect()->route('home')->with('status', 'レシピを更新しました');
     }
 
     /**
@@ -110,6 +124,9 @@ class RecipeController extends Controller
      */
     public function destroy(recipe $recipe)
     {
-        //
+        $recipe->delete();
+        return redirect()
+            ->route('recipes.index')
+            ->with('status', 'recipeを削除しました');
     }
 }

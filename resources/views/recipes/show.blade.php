@@ -31,7 +31,7 @@
                       </tr>
                       <tr>
                         <th>カテゴリー</th>
-                        <td>{{ $recipe->category }}</td>
+                        <td>{{ $recipe-> category -> category}}</td>
                       </tr>
 
                     </table>
