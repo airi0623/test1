@@ -19,6 +19,7 @@
                       <a href="{{ route('recipes.create') }}" class="btn btn-primary mb-3">レシピ新規登録</a>
                     </div>
                     {{-- @include('components.alert') --}}
+                    <!-- あとでなんとかする -->
                     <table class="table table-striped">
                       <thead>
                         <tr>

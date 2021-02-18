@@ -26,9 +26,22 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="exampleFormControlFile1" class="col-md-4 col-form-label text-md-right">Example file input</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Example file input</label>
                             <div class="col-md-6">
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" accept="image/png, image/jpeg">
+                                <!-- <input type="file" class="form-control-file" id="image" name="image" accept="image/png, image/jpeg"> -->
+                                <input
+                                    id="my-icon"
+                                    accept="image/png,image/jpeg"
+                                    class="form-control-file"
+                                    name="image"
+                                    required
+                                    type="file"
+                                >
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

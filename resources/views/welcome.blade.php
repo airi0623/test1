@@ -85,15 +85,21 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
+                    <!-- <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://nova.laravel.com">Nova</a> -->
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                     <a href="{{ route('recipes.create') }}" class="btn btn-primary mb-3">レシピ登録</a>
                     <a href="{{ route('recipes.index') }}" class="btn btn-primary mb-3">レシピ一覧</a>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary mb-3">ユーザー一覧</a> 
+                    <!-- ログインの有無をチェック -->
+                    @if( Auth::check() )
+                        <a href="{{ route('users.show', $id) }}" class="btn btn-primary mb-3">MY PAGE</a>
+                    @endif
+
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\recipe;
 use App\Http\Requests\RecipeRequest;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 
 class HomeController extends Controller

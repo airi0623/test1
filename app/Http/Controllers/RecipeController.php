@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Input;
 
 class RecipeController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *

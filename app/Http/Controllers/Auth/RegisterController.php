@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+// アップロード時に既存ファイルあれば削除できるようにするため
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -65,13 +67,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $path = $data['image']->store('public/image');
+
+        $user = User::create([
             'name' => $data['name'],
             'profile' => $data['profile'],
-            'image' => $data['image'],
+            'image' => $path,
+            // 'image' => basename($path),←ファイル名を保存すると名前がかぶった時に上書きされる
+            // 'image' => $data['image'], ←'tmp_name'が保存されるので↑へ変更
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user;
     }
 }
 

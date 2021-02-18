@@ -13,15 +13,18 @@
 
 use Illuminate\Http\Request;
 use App\Models\recipe;
+// use App\User;
 
 Route::get('/', function () {
 
-    $recipe = Recipe::find(20);
-        
-    return view('welcome', compact('recipe'));
+    // $recipe = Recipe::find(20);
+    $id = Auth::id();
+    // dd($id);
+    return view('welcome', compact('id'));
 });
 
 Auth::routes();
 
 Route::resource('recipes', 'RecipeController');
+Route::resource('users', 'UserController');
 Route::get('/home', 'HomeController@index')->name('home');
